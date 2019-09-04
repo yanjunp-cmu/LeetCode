@@ -74,3 +74,41 @@ public:
                 board[i][j] >>= 1;
     }
 };
+
+
+/**********************************************/  
+/*                  METHOD 2                  */
+/*                  In PLACE                  */  
+/**********************************************/ 
+class Solution {
+public:
+    void gameOfLife(vector<vector<int>>& board) {
+        int m = board.size(), n = m ? board[0].size() : 0;
+        for (int i=0; i<m; ++i) {
+            for (int j=0; j<n; ++j) {
+                int count = 0;
+                for (int I=max(i-1, 0); I<min(i+2, m); ++I){
+                    for (int J=max(j-1, 0); J<min(j+2, n); ++J){
+                        // 1-->1 = 1
+                        // 1-->0 = 2
+                        // 0-->1 = 3
+                        if (board[I][J] == 1) count += 1;
+                        else if (board[I][J] == 2) count += 1;
+                        else if (board[I][J] == 3) count += 0;
+                    }
+                }
+                count -= board[i][j];
+                if (count < 2 && board[i][j] == 1) board[i][j] = 2;
+                else if ((count == 2 || count == 3) && board[i][j] == 1) board[i][j] = 1;
+                else if (count > 3 && board[i][j] == 1) board[i][j] = 2;
+                else if (count == 3 && board[i][j] == 0) board[i][j] = 3;
+            }
+        }
+        for (int i=0; i<m; ++i){
+            for (int j=0; j<n; ++j){
+                if (board[i][j] == 2) board[i][j] = 0;
+                else if (board[i][j] == 3) board[i][j] = 1;
+            }
+        }
+    }
+};

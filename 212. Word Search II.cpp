@@ -42,7 +42,7 @@ public:
         for(int x=0; x<board.size(); ++x)
             for(int y=0; y<board[0].size(); ++y)
                 findWords(board, x, y, root, "", result_set);
-        
+        	
         vector<string> result;
         for(auto it:result_set)    result.push_back(it);
         return result;        

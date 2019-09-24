@@ -40,3 +40,55 @@ private:
         return true;
     }
 };
+
+
+
+/*
+ * BFS solution
+ * use indegree topological sort
+ * a vector of int keeps record of the in-degree of a course
+ *      that is how many times this course appears as a prerequisite
+ * graph is constructed such that g[k] is all courses use k as prerequisite
+ *
+ * main loop:
+ *      decrease indegree of a node 
+ *      push into the queue if indegree is zero
+ *
+ * final checking condition: the number of courses visited and the total number of courses
+**/
+
+class Solution {
+public:
+    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
+        vector<vector<int>> g(numCourses);
+        vector<int> degrees(numCourses);
+        // build a graph
+        for (auto p : prerequisites) {
+            g[p[1]].push_back(p[0]);
+        }
+        // compute indegree
+        for (auto adj : g)
+            for (int d : adj)
+                degrees[d]++;
+        
+        // bfs
+        queue<int> q;
+        for (int i = 0; i < numCourses; i++) {
+            if (degrees[i] == 0){
+                q.push(i);
+            }
+        }
+        int count = 0;
+        while (!q.empty()){
+            int tmp = q.front();
+            q.pop();
+            count++;
+            for (auto it = g[tmp].begin(); it != g[tmp].end(); it++){
+                degrees[*it]--;
+                if (degrees[*it] == 0) 
+                    q.push(*it);
+            }
+        }
+        return count == numCourses;
+    }
+};

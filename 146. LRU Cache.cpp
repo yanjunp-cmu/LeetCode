@@ -46,8 +46,8 @@ public:
             LRU_dl.pop_back();
             LRU_map.erase(key_to_del);
         }
-        LRU_dl.emplace_front(key, value); // create new node in front
-        LRU_map[key] = LRU_dl.begin(); // create new pair of key and node
+        LRU_dl.emplace_front(key, value);   // create new node in front
+        LRU_map[key] = LRU_dl.begin();      // create new pair of key and node
     }
 };
 

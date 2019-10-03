@@ -40,7 +40,7 @@ private:
         graph g;
         int n = words.size();
         for (int i = 1; i < n; i++) {
-            bool found = false;
+            bool found = false; // flag for first different character
             string word1 = words[i - 1], word2 = words[i];
             int m = word1.size(), n = word2.size(), l = max(m, n);
             for (int j = 0; j < l; j++) {

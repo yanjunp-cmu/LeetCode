@@ -1,7 +1,42 @@
 /*
  * Union Find
  */
-
+class Solution {
+public:
+    int Find(vector<int> parent, int i){
+        if (parent[i] == -1)
+            return i;
+        return Find(parent, parent[i]);
+    }
+    
+    void Union(vector<int>& parent, int x, int y){
+        int xset = Find(parent, x);
+        int yset = Find(parent, y);
+        if (xset != yset)
+            parent[xset] = yset;
+    }
+    
+    int findCircleNum(vector<vector<int>>& M) {
+        int result = 0;
+        int N = M.size();
+        vector<int> union_vec(N, -1);
+        
+        // start union process
+        for (int i = 0; i <N; i++){
+            for (int j = 0; j<N; j++){
+                if (M[i][j] && i != j){
+                    Union(union_vec, i, j);
+                }
+            }
+        }
+        
+        for (int i = 0; i < N; i++)
+            if (union_vec[i] == -1)
+                result++;
+        
+        return result;;
+    }
+};
 
 
 /*

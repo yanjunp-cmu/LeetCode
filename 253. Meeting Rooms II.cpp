@@ -31,8 +31,9 @@ public:
 };
 
 /*
-    Priority Queue
-*/
+ * Priority Queue
+ * the pq stores the end time and greedily search for the first available room
+ */
 class Solution {
 public:
     int minMeetingRooms(vector<vector<int>>& intervals) {

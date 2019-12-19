@@ -37,6 +37,7 @@ public:
  * DP solution
  * O(mn^2)
  * where dp[i][j] is the optimal result for splitting nums[:i+1] into j subarrays
+ * subproblem: split j numbers into i subgroups
  */
 class Solution {
 public:

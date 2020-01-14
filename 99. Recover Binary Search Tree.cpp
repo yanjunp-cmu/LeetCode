@@ -30,7 +30,7 @@ public:
         return {x,y};
     }
     void recoverTree(TreeNode* root) {
-        // first use inorder traversal to extrace numbers into a list
+        // first use inorder traversal to extract numbers into a list
         vector<int> nums;
         inorder_traversal(root, nums);
         // now, nums should be an almost sorted array with 2 misplaced item

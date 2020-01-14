@@ -1,4 +1,5 @@
 /*
+ * Approach: expand from the middle
  * starting from the beginning for both pointers
  * skip all same characters and set right to the right-most same character
  * expand left to the left and right to the right
